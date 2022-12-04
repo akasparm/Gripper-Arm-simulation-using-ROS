@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot
+  name="trial1">
+
+  <!-- joint_1 transmission -->
+  <transmission name="joint_1_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="base_link1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- joint_2 transmission -->
+  <transmission name="joint_2_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link1_link2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- joint_3 transmission -->
+  <transmission name="joint_3_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link2_link3_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link3_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- joint_4 transmission -->
+  <transmission name="joint_4_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link3_link4_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link4_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- joint_5 transmission -->
+  <transmission name="joint_5_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link4_link5_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link5_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- joint_6 transmission -->
+  <transmission name="joint_6_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link5_link6_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="link6_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="-2.68085969102883E-05 -2.68490569042133E-05 0.00657485896604853"
+        rpy="0 0 0" />
+      <mass value="4.0"/>
+      <inertia ixx="0.00443333156" ixy="0.0" ixz="0.0" iyy="0.00443333156" iyz="0.0" izz="0.0072"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0.0164284556092243 -0.000580480774403006 0.0989577550019846"
+        rpy="0 0 0" />
+      <mass
+        value="3.7" />
+      <inertia ixx="0.010267495893" ixy="0.0" ixz="0.0" iyy="0.010267495893" iyz="0.0" izz="0.00666"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_link1_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="150.0" lower="-3.14159265" upper="3.14159265" velocity="3.15"/>
+    <dynamics damping="5.0" friction="5.0"/>
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.00064961588106708 0.211074426913968 0.0696536698345357"
+        rpy="0 0 0" />
+      <mass
+        value="8.393" />
+      <inertia ixx="0.22689067591" ixy="0.0" ixz="0.0" iyy="0.22689067591" iyz="0.0" izz="0.0151074"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/lnk2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link1_link2_joint"
+    type="revolute">
+    <origin
+      xyz="0.059962 -0.0021419 0.1"
+      rpy="1.5708 0 1.5351" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit effort="150.0" lower="-3.14159265" upper="3.14159265" velocity="3.15"/>
+    <dynamics damping="5.0" friction="5.0"/>
+  </joint>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="0.00172255792159225 0.187234537081283 -0.0400934283698093"
+        rpy="0 0 0" />
+      <mass
+        value="2.275" />
+      <inertia ixx="0.049443313556" ixy="0.0" ixz="0.0" iyy="0.049443313556" iyz="0.0" izz="0.004095"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link2_link3_joint"
+    type="revolute">
+    <origin
+      xyz="0.0013122 0.425 -0.0002"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="150.0" lower="-3.14159265" upper="3.14159265" velocity="3.15"/>
+    <dynamics damping="5.0" friction="5.0"/>
+  </joint>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="1.18942742642579E-05 0.00245539608874901 0.0492786687995241"
+        rpy="0 0 0" />
+      <mass
+        value="1.219" />
+      <inertia ixx="0.111172755531" ixy="0.0" ixz="0.0" iyy="0.111172755531" iyz="0.0" izz="0.21942"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link3_link4_joint"
+    type="revolute">
+    <origin
+      xyz="0.003603 0.39223 -0.0032"
+      rpy="0 0 0" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="28.0" lower="-3.14159265" upper="3.14159265" velocity="3.2"/>
+    <dynamics damping="5.0" friction="5.0"/>
+  </joint>
+  <link
+    name="link5">
+    <inertial>
+      <origin
+        xyz="-0.000938396742247175 1.11149720530418E-05 0.0489429194980937"
+        rpy="0 0 0" />
+      <mass
+        value="0.1879" />
+      <inertia ixx="0.0171364731454" ixy="0.0" ixz="0.0" iyy="0.0171364731454" iyz="0.0" izz="0.033822"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link4_link5_joint"
+    type="revolute">
+    <origin
+      xyz="0.00041521 0.041548 0.05337"
+      rpy="-1.5708 -1.5351 -0.0099931" />
+    <parent
+      link="link4" />
+    <child
+      link="link5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit effort="28.0" lower="-3.14159265" upper="3.14159265" velocity="3.2"/>
+    <dynamics damping="5.0" friction="5.0"/>
+  </joint>
+  <link
+    name="link6">
+    <inertial>
+      <origin
+        xyz="-5.40549559664982E-05 -0.00017301568914363 0.0149779081623501"
+        rpy="0 0 0" />
+      <mass
+        value="0.130146415437083" />
+      <inertia
+        ixx="5.50377428562704E-05"
+        ixy="1.9869352778531E-07"
+        ixz="3.14891667920488E-08"
+        iyy="5.56116311143236E-05"
+        iyz="1.00788535797681E-07"
+        izz="9.01432526904547E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="$(find trial1)/meshes/link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="link5_link6_joint"
+    type="revolute">
+    <origin
+      xyz="0.04867 0.00012719 0.05337"
+      rpy="-1.5708 -0.13567 -1.5682" />
+    <parent
+      link="link5" />
+    <child
+      link="link6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="10"
+      velocity="10" />
+  </joint>
+  <!-- define the ur5's position and orientation in the world coordinate system -->
+  <link name="world"/>
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+    <!-- TODO: check base_link name of robot -->
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+</robot>
