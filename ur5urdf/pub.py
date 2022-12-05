@@ -12,7 +12,7 @@ import numpy as np
 import math
 
 
-def plotcircle():
+def pickplace():
 
     #Initializing Node
     rospy.init_node('publish_node', anonymous=True) # defining the ros node - publish node
@@ -118,20 +118,38 @@ def plotcircle():
     pprint(jac)
 
     #--------------------------Iteration of Jacobian and Velocity Matrix--------------------
-    w = 2*pi/100
-    theta_inst = [0.00001, 0.00001, (pi/2) + 0.00001, 0.00001, 0.00001, 0.00001]
+    theta_inst = [0.00001, pi/10 + 0.00001, (-(pi/2) - (pi/6) - 0.00001), pi/3 + 0.00001, (-pi/2 + 0.00001), 4*pi + 0.00001]
 
-    for t in range(100):
+
+#============================================================ TASK 1 =========================================================
+# ------------------------------------------------------ To the Pick position -----------------------------------------------------
+    for t in range(10):
         twist = Float64MultiArray()
-        p = jac.subs(theta_1, theta_inst[0]).subs(theta_2, theta_inst[1]).subs(theta_3, theta_inst[2]).subs(theta_4, theta_inst[3]).subs(theta_5, theta_inst[4]).subs(theta_6, theta_inst[5])
-        jac_inv = p.inv()
-        x_dot = Matrix([[0.1*w*math.sin(w*t+pi/2)], [0], [0.1*w*math.cos(w*t+pi/2)], [0], [0], [0]])
-        q_dot = ((jac_inv*x_dot)%(2*pi)).evalf()  
+        twist.data = theta_inst
+        turning.publish(twist)
+        rate.sleep()
+
+
+# ------------------------------------------------------ To put partial_position -----------------------------------------------------
+    for t in range(20):
+        twist = Float64MultiArray()
+        q_dot = [-pi/20, (pi/10)/20 , (pi/2 + pi/6 + pi/5)/20, -(pi/3)/20, 0, 0]
 
         for i in range(len(q_dot)):
             theta_inst[i] += q_dot[i]
 
-        inst_trans = final_trans.subs(theta_1, theta_inst[0]).subs(theta_2, theta_inst[1]).subs(theta_3, theta_inst[2]).subs(theta_4, theta_inst[3]).subs(theta_5, theta_inst[4]).subs(theta_6, theta_inst[5])
+        twist.data = theta_inst
+        turning.publish(twist)
+        rate.sleep()
+
+
+# ------------------------------------------------------ To put final_position -----------------------------------------------------
+    for t in range(20):
+        twist = Float64MultiArray()
+        q_dot = [0, (pi/10)/20, -(pi/20)/20, -(pi/2)/30, 0, 0]
+
+        for i in range(len(q_dot)):
+            theta_inst[i] += q_dot[i]
 
         twist.data = theta_inst
         turning.publish(twist)
@@ -139,8 +157,47 @@ def plotcircle():
 
 
 
+
+# #============================================================ TASK 2 =========================================================
+    # theta_inst = [3*pi/8 + 0.00001, pi/10 + 0.00001, (-(pi/2) - (pi/6) - 0.00001), pi/3 + 0.00001, (-pi/2 + 0.00001), 0.00001]
+
+# # ------------------------------------------------------ To the Pick position -----------------------------------------------------
+#     for t in range(10):
+#         twist = Float64MultiArray()
+#         twist.data = theta_inst
+#         turning.publish(twist)
+#         rate.sleep()
+
+
+# # ------------------------------------------------------ To put partial_position -----------------------------------------------------
+#     for t in range(20):
+#         twist = Float64MultiArray()
+#         q_dot = [pi/50, (pi/10)/20 , (pi/2 + pi/6)/20, -(pi/3)/20, 0, 0]
+
+#         for i in range(len(q_dot)):
+#             theta_inst[i] += q_dot[i]
+
+#         twist.data = theta_inst
+#         turning.publish(twist)
+#         rate.sleep()
+
+
+# # ------------------------------------------------------ To put final_position -----------------------------------------------------
+#     for t in range(20):
+#         twist = Float64MultiArray()
+#         q_dot = [pi/50, -(pi/10)/20 , -(pi/2 + pi/6)/20, (pi/3)/20, 0, 0]
+
+#         for i in range(len(q_dot)):
+#             theta_inst[i] += q_dot[i]
+
+#         twist.data = theta_inst
+#         turning.publish(twist)
+#         rate.sleep()
+
+
+
 if __name__ == '__main__':
     try:
-        plotcircle()
+        pickplace()
     except rospy.ROSInterruptException: 
         pass
