@@ -7,6 +7,7 @@
  
   - Download the package and extract it in your workspace.
   - In a terminal, navigate to your workspace and type following commands:
+    
     $catkin_make
     
     $source devel/setup.bash
