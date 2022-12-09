@@ -23,8 +23,7 @@
     
 ## Forward Kinematics Validation:
   
-  ### Using Peter-Corke Robotics toolbox:
-    - Run ur5_validation.py
-    - Run fk_validation.py
-    - Compare the results.
+  - Run ur5_validation.py
+  - Run fk_validation.py
+  - Compare the results.
     
